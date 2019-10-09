@@ -9,19 +9,21 @@ import org.mapstruct.factory.Mappers;
 public interface CustomerMapper {
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
-//    CustomerDTO customerToCustomerDTO(Customer customer);
+    CustomerDTO customerToCustomerDTO(Customer customer);
 
-    default CustomerDTO customerToCustomerDTO(Customer customer) {
-        if ( customer == null ) {
-            return null;
-        }
+//    default CustomerDTO customerToCustomerDTO(Customer customer) {
+//        if ( customer == null ) {
+//            return null;
+//        }
+//
+//        CustomerDTO customerDTO = new CustomerDTO();
+//
+//        customerDTO.setFirstName( customer.getFirstName() );
+//        customerDTO.setLastName( customer.getLastName() );
+//        customerDTO.setCustomerUrl(Customer.ROOT_URL + customer.getId());
+//
+//        return customerDTO;
+//    }
 
-        CustomerDTO customerDTO = new CustomerDTO();
-
-        customerDTO.setFirstName( customer.getFirstName() );
-        customerDTO.setLastName( customer.getLastName() );
-        customerDTO.setCustomerUrl(Customer.ROOT_URL + customer.getId());
-
-        return customerDTO;
-    }
+    Customer customerDtoToCustomer(CustomerDTO customerDTO);
 }

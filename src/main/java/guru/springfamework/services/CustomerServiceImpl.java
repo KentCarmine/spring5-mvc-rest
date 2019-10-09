@@ -34,20 +34,21 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList());
     }
 
-//    @Override
-//    public CustomerDTO getCustomerById(Long id) {
-//        Optional<Customer> customerOpt = customerRepository.findById(id);
-//        if (!customerOpt.isPresent()) {
-//            return null;
-//        } else {
-//            return customerMapper.customerToCustomerDTO(customerOpt.get());
-//        }
-//    }
-
     @Override
     public CustomerDTO getCustomerById(Long id) {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
                 .orElseThrow(RuntimeException::new); // TODO: implement better exception handling
     }
+
+    @Override
+    public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+        Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+        customer = customerRepository.save(customer);
+        CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(customer);
+        returnDTO.setCustomerUrl(Customer.ROOT_URL + customer.getId());
+        return returnDTO;
+    }
+
+
 }

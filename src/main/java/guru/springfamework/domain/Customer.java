@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class Customer {
-    public static final String ROOT_URL = "/api/v1/customer/";
+    public static final String ROOT_URL = "/api/v1/customers/";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
