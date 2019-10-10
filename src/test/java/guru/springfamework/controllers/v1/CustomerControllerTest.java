@@ -4,6 +4,7 @@ import guru.springfamework.api.v1.mapper.CustomerMapper;
 import guru.springfamework.api.v1.model.CustomerDTO;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.services.CustomerService;
+import guru.springfamework.services.CustomerServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -93,7 +94,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest{
         CustomerDTO returnDto = new CustomerDTO();
         returnDto.setFirstName(customerDTO.getFirstName());
         returnDto.setLastName(customerDTO.getLastName());
-        returnDto.setCustomerUrl(Customer.ROOT_URL + 1);
+        returnDto.setCustomerUrl(CustomerServiceImpl.getCustomerUrl(1L));
 
         when(customerService.createNewCustomer(customerDTO)).thenReturn(returnDto);
 
@@ -115,7 +116,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest{
         CustomerDTO returnCustomerDTO = new CustomerDTO();
         returnCustomerDTO.setFirstName(customerDTO.getFirstName());
         returnCustomerDTO.setLastName(customerDTO.getLastName());
-        returnCustomerDTO.setCustomerUrl(Customer.ROOT_URL + "1");
+        returnCustomerDTO.setCustomerUrl(CustomerServiceImpl.getCustomerUrl(1L));
 
         when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnCustomerDTO);
 
@@ -136,7 +137,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest{
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstName(customerDTO.getFirstName());
         returnDTO.setLastName("Flintstone");
-        returnDTO.setCustomerUrl(Customer.ROOT_URL + "1");
+        returnDTO.setCustomerUrl(CustomerServiceImpl.getCustomerUrl(1L));
 
         when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
@@ -146,7 +147,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", equalTo("Fred")))
                 .andExpect(jsonPath("$.lastName", equalTo("Flintstone")))
-                .andExpect(jsonPath("$.customerUrl", equalTo(Customer.ROOT_URL + "1")));
+                .andExpect(jsonPath("$.customerUrl", equalTo(CustomerServiceImpl.getCustomerUrl(1L))));
     }
 
     @Test

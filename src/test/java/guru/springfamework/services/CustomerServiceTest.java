@@ -84,7 +84,7 @@ public class CustomerServiceTest {
 
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
         assertEquals(customerDTO.getLastName(), savedDto.getLastName());
-        assertEquals(Customer.ROOT_URL + savedCustomer.getId(), savedDto.getCustomerUrl());
+        assertEquals(CustomerServiceImpl.getCustomerUrl(savedCustomer.getId()), savedDto.getCustomerUrl());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class CustomerServiceTest {
 
         assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
         assertEquals(customerDTO.getLastName(), savedDTO.getLastName());
-        assertEquals(Customer.ROOT_URL + "1", savedDTO.getCustomerUrl());
+        assertEquals(CustomerServiceImpl.getCustomerUrl(1L), savedDTO.getCustomerUrl());
     }
 
     @Test

@@ -2,6 +2,7 @@ package guru.springfamework.api.v1.mapper;
 
 import guru.springfamework.api.v1.model.CustomerDTO;
 import guru.springfamework.domain.Customer;
+import guru.springfamework.services.CustomerServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class CustomerMapperImplTest {
     private static final Long ID = 1L;
     private static final String FIRST_NAME = "John";
     private static final String LAST_NAME = "Doe";
-    private static final String URL = Customer.ROOT_URL + ID;
+    private static final String URL = CustomerServiceImpl.getCustomerUrl(ID);
 
     private CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
