@@ -47,7 +47,7 @@ public class CustomerServiceTest {
 
     @Test
     public void getAllCustomers() throws Exception {
-        List<Customer> customerList = Arrays.asList(customer1, customer1);
+        List<Customer> customerList = Arrays.asList(customer1, customer2);
 
         when(customerRepository.findAll()).thenReturn(customerList);
 
